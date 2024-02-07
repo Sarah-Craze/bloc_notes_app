@@ -4,7 +4,6 @@ import NoteDisplay from './NoteDisplay';
 
 function App() {
   const [notes, setNotes] = useState([]);
-  const [currentNote, setCurrentNote] = useState(null);
   const [isAddingNote, setIsAddingNote] = useState(false);
 
   // Chargement des notes depuis le localStorage lors du montage du composant
@@ -25,13 +24,27 @@ function App() {
     setIsAddingNote(true); // Ouvre le formulaire pour ajouter une note
   };
 
-
   const handleEdit = (editedNote) => {
     // Logique de modification de la note
+    // Copier le tableau des notes
+    const updatedNotes = [...notes];
+    // Trouver l'index de la note modifiée
+    const index = updatedNotes.findIndex(note => note.name === editedNote.name);
+    // Remplacer la note modifiée par la nouvelle version
+    updatedNotes[index] = editedNote;
+    // Mettre à jour l'état des notes
+    setNotes(updatedNotes);
+    // Mettre à jour le localStorage
+    localStorage.setItem('notes', JSON.stringify(updatedNotes));
   };
 
   const handleDelete = (deletedNote) => {
-    // Logique de suppression de la note
+    // Filtrer les notes pour exclure celle à supprimer
+    const updatedNotes = notes.filter(note => note.name !== deletedNote.name);
+    // Mettre à jour l'état des notes
+    setNotes(updatedNotes);
+    // Mettre à jour le localStorage
+    localStorage.setItem('notes', JSON.stringify(updatedNotes));
   };
 
   return (
@@ -47,8 +60,8 @@ function App() {
         <NoteDisplay
           key={index}
           note={note}
-          onEdit={handleEdit}
-          onDelete={handleDelete}
+          onEdit={handleEdit} // Passer la fonction handleEdit à NoteDisplay
+          onDelete={handleDelete} // Passer la fonction handleDelete à NoteDisplay
         />
       ))}
     </div>
