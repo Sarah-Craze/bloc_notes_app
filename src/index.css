@@ -1,0 +1,19 @@
+body {
+  background-color: black;
+  color: white; /* Couleur du texte */
+  font-family: Arial, sans-serif; /* Police de caractères */
+}
+
+button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 8px; /* Marge à droite pour séparer les boutons */
+}
+
+button:hover {
+  background-color: darkred;
+}
