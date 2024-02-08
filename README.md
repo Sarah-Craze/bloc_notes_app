@@ -2,9 +2,6 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-
-https://brandslogos.com/wp-content/uploads/images/react-logo-1.png
-
 ## Available Scripts
 
 In the project directory, you can run:
